@@ -2,7 +2,7 @@
 
 Disclaimer
 ---
-`phpserverlogger` is developed with the intension of using this tool only for educational purpose.
+`PHP Server Logger` is developed with the intension of using this tool only for educational purpose.
 
 
 # What the logger is doing ?
