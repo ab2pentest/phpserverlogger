@@ -16,24 +16,24 @@ This logger saves all information about coming http requests which includes:
 
 **Important: This works only in PHP Servers, required to have an installed php version.**
 
-First modify the values in the `logger.php` file
+1) First modify the values in the `logger.php` file
 
 ```PHP
 define("LOG_DIRECTORY","CHANGETHIS");
 define("LOG_SEPARATOR","CHANGETHIS\n");
 ```
 
-The value of `LOG_DIRECTORY` for the directory on where the logs should be saved.
-The value of `LOG_SEPARATOR` is for seperating each new request in my case I like to use `-------------\n`.
+- The value of `LOG_DIRECTORY` for the directory on where the logs should be saved.
+- The value of `LOG_SEPARATOR` is for seperating each new request in my case I like to use `-------------\n`.
 
-And after that and in few steps you can start logging all the coming traffics of your HTTP Server, upload the new `logger.php` & `.htaccess` files to your server and in your `index.php` file
-put this line in the beggining of the file:
+2) Upload the new `logger.php` & `.htaccess` files to your WebServer
+3) In your `index.php` file put this line in the beggining of the file:
 
 ```php
 include("logger.php");
 ```
 
-And congrats now everything is logged :D
+Congrats now everything is set :D
 
 ---
 This version is only beta and the code was so silly probably has many issues, so any suggestion will be welcomed.
