@@ -12,7 +12,7 @@ This logger saves all information about coming http requests which includes:
 - All headers values.
 - LOCAL & REMOTE Server values.
 
-# How to use ?
+# How to install it ?
 
 **Important: This works only in PHP Servers, required to have an installed php version.**
 
