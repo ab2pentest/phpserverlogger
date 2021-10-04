@@ -36,4 +36,4 @@ include("logger.php");
 Congrats now everything is set :D
 
 ---
-This version is only beta and the code was so silly probably has many issues, so any suggestion will be welcomed.
+This version is only beta and the code is so silly probably has many issues, so any suggestion will be welcomed.
