@@ -1,39 +1,35 @@
-# PHP Server Logger (For Educational Purpose).
+# PHP Server Logger.
 
-Disclaimer
----
-`PHP Server Logger` is developed with the intension of using this tool only for educational purpose.
+## What this logger is doing ?
 
+This logger captures and records various information about incoming:  
 
-# What the logger is doing ?
-
-This logger saves all information about coming http requests which includes:  
-- All type of requests `POST`,`GET`,`PUT` ...
+- HTTP requests `POST`,`GET`,`PUT` ...
 - All headers values.
-- LOCAL & REMOTE Server values.
+- Local & Remote Server values.
 
-# How to install it ?
+## How to install it ?
 
-**Important: This works only in PHP Servers, required to have an installed php version.**
+**Important: This logger only functions on PHP servers and requires a PHP installation to operate.**
 
-1) First modify the values in the `logger.php` file
+1) First modify this value in the `logger.php` file
+
+- The constant `LOG_DIRECTORY` specifies the directory where the logs are saved, and it should exists on the server.
 
 ```PHP
 define("LOG_DIRECTORY","CHANGETHIS");
-define("LOG_SEPARATOR","CHANGETHIS\n");
 ```
 
-- The value of `LOG_DIRECTORY` for the directory on where the logs should be saved.
-- The value of `LOG_SEPARATOR` is for seperating each new request in my case I like to use `-------------\n`.
+2) Upload the updated `logger.php` and `.htaccess` files to your web server.
 
-2) Upload the new `logger.php` & `.htaccess` files to your WebServer
-3) In your `index.php` file put this line in the beggining of the file:
+3) Insert the following line at the beginning of your `index.php` file:
 
 ```php
 include("logger.php");
 ```
 
-Congrats now everything is set :D
+Congratulations, everything is now configured!
 
----
-This version is only beta and the code is so silly and surely has many issues, so any suggestion will be welcomed.
+## Purpose
+
+This tool is a powerful asset for blue team defense strategies, as it offers comprehensive information on incoming HTTP requests.
