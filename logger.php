@@ -2,31 +2,69 @@
 /*
 CODED BY @ab2pentest
 DATE: 2021/05/30
-UPDATED: 2021/10/03
+UPDATED: 2023/01/13
 */
 
 define("LOG_DIRECTORY","df7b00948e631e9d658309e2c96576eb");
-define("LOG_SEPARATOR","---------------------------------------------------------------------------------------------\n");
 
-# THE PRINTED MESSAGE TO FOOL THE VISITOR.
+// The printed message to fool the visitor.
 echo "Not Found";
 
-# GET ALL HEADERS.
-foreach (getallheaders() as $name => $value) {
-    // echo "$name: $value<br>";
-	@file_put_contents(LOG_DIRECTORY."/HEADERS.log","{$name}: {$value}\n",FILE_APPEND);
-}
-@file_put_contents(LOG_DIRECTORY."/HEADERS.log",LOG_SEPARATOR,FILE_APPEND);
+// Define log file name
+$log_file = 'requests_' . date('Y-m-d') . '.html';
 
-# GET ALL SERVER INFORMATIONS.
-foreach(@$_SERVER as $key => $value){
-	@file_put_contents(LOG_DIRECTORY."/SERVER.log","Key: {$key} | Value: {$value}\n",FILE_APPEND);
+// Get all headers
+$headers = getallheaders();
+$headers_data = array();
+foreach ($headers as $name => $value) {
+    $headers_data[] = array('name' => $name, 'value' => $value);
 }
-@file_put_contents(LOG_DIRECTORY."/SERVER.log",LOG_SEPARATOR,FILE_APPEND);
 
-# GET ALL REQUESTS.
-foreach($_REQUEST as $param => $value){
-	@file_put_contents(LOG_DIRECTORY."/REQUEST.log","Parameter: {$param} | Value: {$value}\n",FILE_APPEND);
+// Get all server informations
+$server_data = array();
+foreach ($_SERVER as $key => $value) {
+    $server_data[] = array('key' => $key, 'value' => $value);
 }
-@file_put_contents(LOG_DIRECTORY."/REQUEST.log",LOG_SEPARATOR,FILE_APPEND);
+
+// Get all requests
+$request_data = array();
+foreach ($_REQUEST as $param => $value) {
+    $request_data[] = array('param' => $param, 'value' => $value);
+}
+
+// Begin log file content
+$log_data = '<!DOCTYPE html><html><head><style>table {border-collapse: collapse;}table, th, td {border: 1px solid black;}th, td {padding: 8px;}</style></head><body>';
+
+// Add headers data to log
+$log_data .= '<h2>Headers</h2>';
+$log_data .= '<table>';
+$log_data .= '<tr><th>Name</th><th>Value</th></tr>';
+foreach ($headers_data as $data) {
+    $log_data .= '<tr><td>' . $data['name'] . '</td><td>' . $data['value'] . '</td></tr>';
+}
+$log_data .= '</table>';
+
+// Add server data to log
+$log_data .= '<h2>Server</h2>';
+$log_data .= '<table>';
+$log_data .= '<tr><th>Key</th><th>Value</th></tr>';
+foreach ($server_data as $data) {
+    $log_data .= '<tr><td>' . $data['key'] . '</td><td>' . $data['value'] . '</td></tr>';
+}
+$log_data .= '</table>';
+
+// Add request data to log
+$log_data .= '<h2>Request</h2>';
+$log_data .= '<table>';
+$log_data .= '<tr><th>Parameter</th><th>Value</th></tr>';
+foreach ($request_data as $data) {
+    $log_data .= '<tr><td>' . $data['param'] . '</td><td>' . $data['value'] . '</td></tr>';
+}
+$log_data .= '</table>';
+
+$log_data .= '</body></html>';
+
+// Write log data to HTML file
+
+@file_put_contents(LOG_DIRECTORY.$log_file,$log_data,FILE_APPEND);
 ?>
