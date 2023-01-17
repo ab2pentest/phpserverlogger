@@ -5,7 +5,7 @@ DATE: 2021/05/30
 UPDATED: 2023/01/13
 */
 
-define("LOG_DIRECTORY","df7b00948e631e9d658309e2c96576eb");
+define("LOG_DIRECTORY","CHANGETHIS");
 
 // The printed message to fool the visitor.
 echo "Not Found";
